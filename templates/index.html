@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{ template "head" "Ionize"}}
+</head>
+<body>
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+
+        {{ if .Username }}
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="/settings">Settings</a></li>
+            <li><a class="dropdown-item" href="{{ .ProfileLink }}">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+        {{ else }}
+        <div class="text-end">
+          <a href="/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+          <a href="/sign-up"><button type="button" class="btn btn-warning">Sign-up</button></a>
+        </div>
+        {{ end }}
+    </div>
+  </header>
+
+  <main>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Collapsible Group Item #1
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Collapsible Group Item #2
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Collapsible Group Item #3
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {{ if .Username }}
+      <div class="content">
+          User logged in: {{ .Username }}. Hello!!
+
+          <form action="/post/entry" method="post">
+            <label for="context">Status</label>
+            <textarea id="context" name="context" rows="4" cols="50" placeholder="Write anything..."></textarea>
+
+            <br>
+
+            <label for="eventdate">Event date</label>
+            <input type="date" id="eventdate" name="eventdate">
+
+            <br>
+
+            <label for="eventlocation">Event location</label>
+            <input type="text" id="eventlocation" name="eventlocation">
+
+            <br>
+
+            <input type="submit" value="Post it">
+          </form>
+      </div>
+      {{ else }}
+      You shouldn't be here! Unlogged person!!
+      {{ end }}
+  </main>
+  {{ template "footer" }}
+</body>
+</html>

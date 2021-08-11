@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ template "head" "Ionize - Signup"}}
+    <link href="/res/sign.css" rel="stylesheet">
+</head>
+<body class="text-center">
+    <main class="form-signup">
+        {{ if .Notification }}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+                {{ .Notification }}
+            </div>
+        </div>
+        {{ end }}
+        
+        <form class="main-form" action="/post/signup" method="post">
+            <h1 class="h3 mb-3 fw-normal">Sign up into Ionize</h1>
+
+            <div class="form-floating">
+                <input type="name" class="form-control form-control-dark" id="name" name="name" placeholder="User name" maxlength="64">
+                <label for="name">User name</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="email" class="form-control form-control-dark" id="email" name="email" placeholder="name@example.com" maxlength="253">
+                <label for="email">Email address</label>
+            </div>
+            
+            <div class="form-floating">
+                <input type="password" class="form-control form-control-dark" id="passwd" name="passwd" placeholder="Password">
+                <label for="passwd">Password</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+            <p class="mt-5 mb-3 text-muted">{{ template "copyright" }}</p>
+        </form>
+    </main>
+</body>
+</html>
