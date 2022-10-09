@@ -55,13 +55,15 @@ func getDate() string {
 func indexHandler(response http.ResponseWriter, request *http.Request) {
 	// Prepare index data
 	type IndexData struct {
-		Username    string
-		ProfileLink string
+		Username     string
+		Notification string
+		ProfileLink  string
 	}
 
 	data := &IndexData{
-		Username:    getUserName(request),
-		ProfileLink: "/u/" + getUserName(request),
+		Username:     getUserName(request),
+		Notification: "",
+		ProfileLink:  "/u/" + getUserName(request),
 	}
 
 	// Run
