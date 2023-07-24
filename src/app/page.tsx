@@ -29,12 +29,12 @@ export default function Home() {
         <input
           type="text"
           placeholder="User Name"
-          className="p-2 m-1 rounded"
+          className="p-2 m-1 rounded dark:bg-slate-600"
         />
         <input
           type="password"
           placeholder="Pass Word"
-          className="p-2 m-1 rounded"
+          className="p-2 m-1 rounded dark:bg-slate-600"
         />
 
         <div className="flex">
