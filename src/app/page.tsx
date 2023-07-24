@@ -38,11 +38,11 @@ export default function Home() {
         />
 
         <div className="flex">
-          <button className="flex-1 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700">
+          <button className="flex-1 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 dark:bg-slate-300 dark:text-slate-700 dark:hover:bg-slate-200 dark:hover:text-slate-700">
             Sign Up
           </button>
 
-          <button className="flex-1 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700">
+          <button className="flex-1 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 dark:bg-slate-300 dark:text-slate-700 dark:hover:bg-slate-200 dark:hover:text-slate-700">
             Log In
           </button>
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
 
       <button
         onClick={authorize}
-        className={`transition-all opacity-100 duration-1000 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 ${
+        className={`"flex-1 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 dark:bg-slate-300 dark:text-slate-700 dark:hover:bg-slate-200 dark:hover:text-slate-700 ${
           auth && "opacity-0 hidden"
         }`}
       >
