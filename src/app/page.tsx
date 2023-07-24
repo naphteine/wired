@@ -18,11 +18,13 @@ export default function Home() {
         src={wficon}
         alt="Wiredfriends"
         width={64}
-        className="m-3"
+        className="m-3 pointer-events-none"
       />
 
       <div
-        className={`rounded-xl transition flex flex-col ${!auth && "hidden"}`}
+        className={`opacity-100 transition-all duration-1000 rounded-xl transition flex flex-col ${
+          !auth && "opacity-0 hidden"
+        }`}
       >
         <input
           type="text"
@@ -48,8 +50,8 @@ export default function Home() {
 
       <button
         onClick={authorize}
-        className={`transition p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 ${
-          auth && "hidden"
+        className={`transition-all opacity-100 duration-1000 p-3 m-2 rounded-xl bg-slate-800 text-blue-100 hover:text-blue-300 hover:bg-slate-700 ${
+          auth && "opacity-0 hidden"
         }`}
       >
         Authorize
