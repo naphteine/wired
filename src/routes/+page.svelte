@@ -1,14 +1,18 @@
+<script>
+	import Header from '../components/header.svelte';
+
+	export let data;
+</script>
+
 <svelte:head>
 	<title>Home - Wired</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<
+<Header />
 
-	<form>
-		<input type="text" placeholder="e-mail">
-		<input type="password" name="password" id="password" placeholder="password">
-		<button type="submit">LOGIN</button>
-	</form>
-</section>
+<ul>
+	{#each data.countries as country}
+		<li>{country.name}</li>
+	{/each}
+</ul>
