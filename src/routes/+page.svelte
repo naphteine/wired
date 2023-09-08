@@ -1,5 +1,9 @@
 <script>
 	import Header from '../components/header.svelte';
+
+	export let data;
+
+	const theName = data.myName.toUpperCase();
 </script>
 
 <svelte:head>
@@ -8,6 +12,8 @@
 </svelte:head>
 
 <Header />
+
+<h2>{ theName }</h2>
 
 <ul>
 	<li>Hello</li>
