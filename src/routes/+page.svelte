@@ -16,5 +16,7 @@
 <h2>{ theName }</h2>
 
 <ul>
-	<li>Hello</li>
+	{#each data.countries as country}
+		<li>{country.name}</li>
+	{/each}
 </ul>

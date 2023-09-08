@@ -1,3 +1,3 @@
 export const load = () => {
-    return { myName: "Gökay" };
+    return { myName: "CONNECTED TO WiRED" };
 }
