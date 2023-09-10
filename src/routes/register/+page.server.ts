@@ -1,3 +1,5 @@
+import { fail } from '@sveltejs/kit'
+
 // src/routes/login/+page.server.ts
 export const actions = {
 	default: async ({ request, url, locals: { supabase } }) => {
