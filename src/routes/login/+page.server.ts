@@ -1,15 +1,25 @@
+// src/routes/login/+page.server.ts
 export const actions = {
-	login: async ({ cookies, request }) => {
-		const data = await request.formData();
-
-		console.log('LOGIN REQUEST');
-		console.log(data);
+	default: async ({ request, url, locals: { supabase } }) => {
+	  const formData = await request.formData()
+	  const email = formData.get('email') as string
+	  const password = formData.get('password') as string
+  
+	  const { error } = await supabase.auth.signUp({
+		email,
+		password,
+		options: {
+		  emailRedirectTo: `${url.origin}/auth/callback`,
+		},
+	  })
+  
+	  if (error) {
+		return fail(500, { message: 'Server error. Try again later.', success: false, email })
+	  }
+  
+	  return {
+		message: 'Please check your email for a magic link to log into the website.',
+		success: true,
+	  }
 	},
-
-	register: async ({ cookies, request }) => {
-		const data = await request.formData();
-
-		console.log('REGISTER REQUEST');
-		console.log(data);
-	}
-};
+  }

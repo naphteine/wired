@@ -1,24 +1,11 @@
-<script>
-	import Header from '../../components/header.svelte';
+<!-- // src/routes/login/+page.svelte -->
+<script lang="ts">
+	import { enhance } from '$app/forms'
+	export let form
 </script>
 
-<svelte:head>
-	<title>Login - Wired</title>
-</svelte:head>
-
-<Header />
-
-<h2>Login</h2>
-<form method="POST" action="?/login">
-	<input type="email" placeholder="e-mail" name="e-mail" id="e-mail" />
-	<input type="password" name="password" id="password" placeholder="password" />
-	<button type="submit">LOGIN</button>
-</form>
-
-<h2>Register</h2>
-<form method="POST" action="?/register">
-	<input type="text" placeholder="e-mail" />
-	<input type="password" name="password" id="password" placeholder="password" />
-	<input type="password" name="reenter" id="reenter" placeholder="re-enter password " />
-	<button type="submit">REGISTER</button>
+<form method="post" use:enhance>
+  <input name="email" value={form?.email ?? ''} />
+  <input type="password" name="password" />
+  <button>Sign up</button>
 </form>
