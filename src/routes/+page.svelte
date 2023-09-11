@@ -1,9 +1,11 @@
-<script>
-	import Header from '../components/header.svelte';
+<script lang="ts">
 	import Post from './post.svelte';
 
 	export let data;
-	const theName = 'DOCTOR';
+	export let form;
+
+	let { session, supabase } = data;
+	$: ({ session, supabase } = data);
 </script>
 
 <svelte:head>
@@ -15,9 +17,11 @@
 <ul>
 	{#each data.posts as post}
 		<Post
+			{supabase}
 			content={post.name}
 			user={post.profiles.username}
 			fullName={post.profiles.full_name}
+			bind:url={post.profiles.avatar_url}
 			date={post.created}
 		/>
 	{/each}

@@ -3,7 +3,6 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { enhance } from '$app/forms';
 	import Avatar from './Avatar.svelte';
-	import Header from '../../components/header.svelte';
 
 	export let data;
 	export let form;
