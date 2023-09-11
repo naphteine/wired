@@ -11,6 +11,15 @@
 	export let url: string;
 	export let supabase: SupabaseClient;
 
+	const objDate = new Date(date);
+	const formattedDate = objDate.toLocaleDateString('tr-TR', {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit'
+	});
+
 	let avatarUrl: string | null = null;
 	let files: FileList;
 
@@ -48,7 +57,7 @@
 		<div class="avatar no-image" style="height: 0em; width: 0em;" />
 	{/if}
 	<a href="/user/{user}"><b>{fullName}</b> @{user}</a>
-	<em>{date}</em>
+	<em>{formattedDate}</em>
 	<h2>{content}</h2>
 </article>
 
