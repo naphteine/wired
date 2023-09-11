@@ -7,10 +7,8 @@
 
 <svelte:head>
 	<title>Home - Wired</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Connect to Wired" />
 </svelte:head>
-
-<Header />
 
 <h1>LATEST POSTS</h1>
 <ul>
@@ -18,3 +16,10 @@
 		<li>{post.name} - {post.profiles.username} - {post.created}</li>
 	{/each}
 </ul>
+
+<style>
+	h1 {
+		margin: 0;
+		text-align: center;
+	}
+</style>

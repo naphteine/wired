@@ -5,11 +5,21 @@
 	export let form;
 </script>
 
-<Header />
-
-<h1>Register Page</h1>
+<h1>REGISTER</h1>
 <form method="post" use:enhance>
-	<input name="email" value={form?.email ?? ''} />
-	<input type="password" name="password" />
+	<input placeholder="email" name="email" value={form?.email ?? ''} />
+	<input placeholder="password" type="password" name="password" />
 	<button>Sign up</button>
 </form>
+
+<style>
+	h1 {
+		text-align: center;
+		margin: 0;
+	}
+
+	form {
+		width: 100px;
+		margin: 0 auto;
+	}
+</style>
