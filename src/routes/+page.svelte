@@ -1,5 +1,6 @@
 <script>
 	import Header from '../components/header.svelte';
+	import Post from './post.svelte';
 
 	export let data;
 	const theName = 'DOCTOR';
@@ -13,7 +14,12 @@
 <h1>LATEST POSTS</h1>
 <ul>
 	{#each data.posts as post}
-		<li>{post.name} - {post.profiles.username} - {post.created}</li>
+		<Post
+			content={post.name}
+			user={post.profiles.username}
+			fullName={post.profiles.full_name}
+			date={post.created}
+		/>
 	{/each}
 </ul>
 
@@ -21,5 +27,10 @@
 	h1 {
 		margin: 0;
 		text-align: center;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
 	}
 </style>

@@ -41,8 +41,6 @@
 	};
 </script>
 
-<Header />
-
 <div class="form-widget">
 	<form
 		class="form-widget"

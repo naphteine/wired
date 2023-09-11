@@ -9,7 +9,6 @@
 	<title>User Management</title>
 </svelte:head>
 
-<Header />
 <form method="post" action="?/createPost" use:enhance>
 	<input placeholder="new post" name="post" type="text" />
 	<button>Submit</button>
