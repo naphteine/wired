@@ -68,8 +68,14 @@
 		margin: 0 auto;
 		padding: 1rem;
 	}
+
 	h2 {
 		margin: 0;
 		font-family: sans-serif;
+	}
+
+	a {
+		text-decoration: none;
+		color: blue;
 	}
 </style>
