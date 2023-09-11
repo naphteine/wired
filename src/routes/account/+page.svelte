@@ -3,6 +3,7 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { enhance } from '$app/forms';
 	import Avatar from './Avatar.svelte';
+	import Header from '../../components/header.svelte';
 
 	export let data;
 	export let form;
@@ -24,6 +25,13 @@
 		};
 	};
 
+	const handlePassword: SubmitFunction = () => {
+		loading = true;
+		return async () => {
+			loading = false;
+		};
+	};
+
 	const handleSignOut: SubmitFunction = () => {
 		loading = true;
 		return async ({ update }) => {
@@ -32,6 +40,8 @@
 		};
 	};
 </script>
+
+<Header />
 
 <div class="form-widget">
 	<form
@@ -78,6 +88,12 @@
 				disabled={loading}
 			/>
 		</div>
+	</form>
+
+	<form method="post" action="?/password" use:enhance={handlePassword}>
+		<input type="password" name="password" placeholder="new password" />
+		<input type="password" name="repassword" placeholder="retype new password" />
+		<button>Change Password</button>
 	</form>
 
 	<form method="post" action="?/signout" use:enhance={handleSignOut}>

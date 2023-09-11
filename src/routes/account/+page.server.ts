@@ -51,6 +51,29 @@ export const actions = {
       avatarUrl,
     }
   },
+  password: async ({ request, locals: { supabase } }) => {
+    const formData = await request.formData()
+    const newPassword = formData.get('password') as string
+    const newRetype = formData.get('repassword') as string
+
+    if (newPassword !== newRetype) {
+      return fail(403, {
+        fail: "PASSWORDS NOT MATCH",
+      })
+    }
+
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+
+    if (error) {
+      return fail(500, {
+        fail: "ERROR ON SERVER"
+      })
+    }
+
+    return {
+      type: "SUCCESS"
+    }
+  },
   signout: async ({ locals: { supabase, getSession } }) => {
     const session = await getSession()
     if (session) {

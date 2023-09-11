@@ -1,23 +1,15 @@
-<!-- src/routes/+page.svelte -->
+<!-- // src/routes/login/+page.svelte -->
 <script lang="ts">
-	import { Auth } from '@supabase/auth-ui-svelte';
-	import { ThemeSupa } from '@supabase/auth-ui-shared';
-
-	export let data;
+	import { enhance } from '$app/forms';
+	import Header from '../../components/header.svelte';
+	export let form;
 </script>
 
-<svelte:head>
-	<title>User Management</title>
-</svelte:head>
+<Header />
 
-<div class="row flex-center flex">
-	<div class="col-6 form-widget">
-		<Auth
-			supabaseClient={data.supabase}
-			view="magic_link"
-			redirectTo={`${data.url}/auth/callback`}
-			showLinks={false}
-			appearance={{ theme: ThemeSupa, style: { input: 'color: #fff' } }}
-		/>
-	</div>
-</div>
+<h1>Login Page</h1>
+<form method="post" use:enhance>
+	<input name="email" value={form?.email ?? ''} />
+	<input type="password" name="password" />
+	<button>LOGIN</button>
+</form>
