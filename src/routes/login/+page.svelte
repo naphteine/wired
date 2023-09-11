@@ -1,7 +1,6 @@
 <!-- // src/routes/login/+page.svelte -->
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Header from '../../components/header.svelte';
 	export let form;
 </script>
 
@@ -11,11 +10,18 @@
 	<input placeholder="password" type="password" name="password" />
 	<button>LOGIN</button>
 </form>
+{#if form?.message}
+	<h2>{form?.message}</h2>
+{/if}
 
 <style>
 	h1 {
 		text-align: center;
 		margin: 0;
+	}
+
+	h2 {
+		text-align: center;
 	}
 
 	form {

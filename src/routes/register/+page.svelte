@@ -11,11 +11,18 @@
 	<input placeholder="password" type="password" name="password" />
 	<button>Sign up</button>
 </form>
+{#if form?.message}
+	<h2>{form?.message}</h2>
+{/if}
 
 <style>
 	h1 {
 		text-align: center;
 		margin: 0;
+	}
+
+	h2 {
+		text-align: center;
 	}
 
 	form {

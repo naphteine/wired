@@ -74,7 +74,7 @@
 
 		<div>
 			<label for="website">Website</label>
-			<input id="website" name="website" type="url" value={form?.website ?? website} />
+			<input id="website" name="website" type="text" value={form?.website ?? website} />
 		</div>
 
 		<div>

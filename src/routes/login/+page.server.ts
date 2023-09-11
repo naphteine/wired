@@ -22,7 +22,7 @@ export const actions = {
 		const { error } = await supabase.auth.signInWithPassword({ email, password });
 
 		if (error) {
-			return fail(500, { message: 'Server error. Try again later.', success: false, email });
+			return fail(500, { message: `Error: ${error.message}`, success: false, email });
 		}
 
 		return {
