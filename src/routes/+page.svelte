@@ -12,11 +12,9 @@
 
 <Header />
 
-<h2>{theName}</h2>
-<h3>{data.session?.user.email}</h3>
-
+<h1>LATEST POSTS</h1>
 <ul>
-	{#each data.countries as country}
-		<li>{country.name}</li>
+	{#each data.posts as post}
+		<li>{post.name} - {post.profiles.username} - {post.created}</li>
 	{/each}
 </ul>
