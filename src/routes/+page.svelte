@@ -20,9 +20,18 @@
 	<h2>CONNECTED TO WIRED</h2>
 	<h3>{session.user.email}</h3>
 
-	<form method="post" action="?/createPost" use:enhance>
-		<input placeholder="new post" name="post" type="text" autocomplete="off" />
-		<button>Submit</button>
+	<form method="post" action="?/createPost" class="bg-slate-300" use:enhance>
+		<input
+			class="rounded bg-slate-600 p-3 text-slate-100"
+			placeholder="new post"
+			name="post"
+			type="text"
+			autocomplete="off"
+		/>
+		<button
+			class="bg-slate-600 p-2 rounded my-3 text-slate-100 hover:bg-green-600 hover:text-green-100 transition"
+			>Submit</button
+		>
 	</form>
 {/if}
 
@@ -53,9 +62,9 @@
 	}
 
 	form {
-		background-color: rgb(177, 177, 177);
+		border-radius: 20px;
 		max-width: 400px;
-		margin: 0 auto;
+		margin: 1rem auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -65,5 +74,6 @@
 	form input {
 		width: 90%;
 		height: 3rem;
+		border: none;
 	}
 </style>

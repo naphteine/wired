@@ -7,12 +7,24 @@
 <header>
 	<h1>Welcome to the Wired</h1>
 	<nav>
-		<a href="/">Home</a>
+		<a
+			class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
+			href="/">Home</a
+		>
 		{#if session}
-			<a href="/account">Profile</a>
+			<a
+				class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
+				href="/account">Profile</a
+			>
 		{:else}
-			<a href="/login">Login</a>
-			<a href="/register">Register</a>
+			<a
+				class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
+				href="/login">Login</a
+			>
+			<a
+				class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
+				href="/register">Register</a
+			>
 		{/if}
 	</nav>
 </header>
@@ -27,24 +39,6 @@
 
 	h1 {
 		margin: 0;
-	}
-
-	a {
-		background-color: black;
-		text-decoration: none;
-		font-family: sans-serif;
-		color: white;
-		padding: 0.5rem;
-		border-top-right-radius: 15px;
-		border-bottom-left-radius: 15px;
-		border: 1px solid black;
-		transition: all 0.1s ease-in-out;
-	}
-
-	a:hover {
-		background-color: #fafffc;
-		color: black;
-		border: 1px solid black;
 	}
 
 	nav {

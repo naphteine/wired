@@ -45,38 +45,24 @@
 	$: if (url) downloadImage(url);
 </script>
 
-<article>
-	{#if avatarUrl}
-		<img
-			src={avatarUrl}
-			alt={avatarUrl ? 'Avatar' : 'No image'}
-			class="avatar image"
-			style="height: {size}em; width: {size}em; border-radius: 100px;"
-		/>
-	{:else}
-		<div class="avatar no-image" style="height: 0em; width: 0em;" />
-	{/if}
-	<a href="/user/{user}"><b>{fullName}</b> @{user}</a>
-	<em>{formattedDate}</em>
-	<h2>{content}</h2>
+<article class="bg-slate-300 rounded-xl p-5 mx-auto my-3">
+	<header class="flex items-center">
+		{#if avatarUrl}
+			<img src={avatarUrl} alt={avatarUrl ? 'Avatar' : 'No image'} class="h-20 w-20 rounded-full" />
+		{:else}
+			<div class="bg-slate-400 w-20 h-20 rounded-full" />
+		{/if}
+		<div class="flex flex-col mx-3">
+			<a href="/user/{user}" class="text-slate-800 hover:underline"><b>{fullName}</b> @{user}</a>
+			<em>{formattedDate}</em>
+		</div>
+	</header>
+	<p class="my-4">{content}</p>
 </article>
 
 <style>
 	article {
 		width: 80vw;
 		max-width: 600px;
-		margin: 1rem auto;
-		padding: 1rem;
-		background-color: #c5d1d6;
-	}
-
-	h2 {
-		margin: 0;
-		font-family: sans-serif;
-	}
-
-	a {
-		text-decoration: none;
-		color: blue;
 	}
 </style>
