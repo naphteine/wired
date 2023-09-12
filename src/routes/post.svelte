@@ -64,9 +64,10 @@
 <style>
 	article {
 		width: 80vw;
-		max-width: 896px;
-		margin: 0 auto;
+		max-width: 600px;
+		margin: 1rem auto;
 		padding: 1rem;
+		background-color: #c5d1d6;
 	}
 
 	h2 {
