@@ -1,28 +1,32 @@
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
-	import './styles.css'
-	import { invalidate } from '$app/navigation'
-	import { onMount } from 'svelte'
+	import './styles.css';
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { navigating } from '$app/stores';
+	import { loading } from '$lib/loading';
 	import Header from '../components/header.svelte';
+	import Loading from '$lib/Loading.svelte';
 
-	export let data
+	export let data;
 
-	let { supabase, session } = data
-	$: ({ supabase, session } = data)
+	let { supabase, session } = data;
+	$: ({ supabase, session } = data);
+
+	$: $loading = !!$navigating;
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {
 			if (_session?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth')
+				invalidate('supabase:auth');
 			}
-		})
+		});
 
-		return () => data.subscription.unsubscribe()
-	})
+		return () => data.subscription.unsubscribe();
+	});
 </script>
 
 <Header />
+<slot />
 
-<main>
-	<slot />
-</main>
+<Loading />
