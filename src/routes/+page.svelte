@@ -21,7 +21,7 @@
 	<h3>{session.user.email}</h3>
 
 	<form method="post" action="?/createPost" use:enhance>
-		<input placeholder="new post" name="post" type="text" />
+		<input placeholder="new post" name="post" type="text" autocomplete="off" />
 		<button>Submit</button>
 	</form>
 {/if}

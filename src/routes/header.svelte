@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<h1>Wired Zone</h1>
+	<h1>Welcome to the Wired</h1>
 	<nav>
 		<a href="/">Home</a>
 		{#if session}
