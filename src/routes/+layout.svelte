@@ -5,8 +5,8 @@
 	import { onMount } from 'svelte';
 	import { navigating } from '$app/stores';
 	import { loading } from '$lib/loading';
-	import Header from '../components/header.svelte';
 	import Loading from '$lib/Loading.svelte';
+	import Header from './header.svelte';
 
 	export let data;
 
@@ -26,7 +26,7 @@
 	});
 </script>
 
-<Header />
+<Header {session} />
 <slot />
 
 <Loading />

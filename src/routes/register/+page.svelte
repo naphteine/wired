@@ -1,7 +1,6 @@
 <!-- // src/routes/login/+page.svelte -->
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Header from '../../components/header.svelte';
 	export let form;
 </script>
 
