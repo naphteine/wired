@@ -14,7 +14,7 @@
 	let loading = false;
 	let fullName: string = profile?.full_name ?? '';
 	let username: string = profile?.username ?? '';
-	let website: string = profile?.website ?? '';
+	let website: string = profile?.about ?? '';
 	let avatarUrl: string = profile?.avatar_url ?? '';
 
 	const handleSubmit: SubmitFunction = () => {
