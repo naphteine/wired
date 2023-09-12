@@ -13,7 +13,7 @@
 	let { supabase, session } = data;
 	$: ({ supabase, session } = data);
 
-	$: $loading = !!$navigating;
+	$: loading.setNavigate(!!$navigating);
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((event, _session) => {

@@ -1,9 +1,20 @@
 <script lang="ts">
 	import { loading } from '$lib/loading';
+
+	$: if ($loading.status === 'NAVIGATING') {
+		setTimeout(() => {
+			if ($loading.status === 'NAVIGATING') {
+				$loading.status = 'LOADING';
+			}
+		}, 400);
+	}
 </script>
 
-{#if $loading}
+{#if $loading.status === 'LOADING'}
 	<div />
+	{#if $loading.message}
+		<p>{$loading.message}</p>
+	{/if}
 {/if}
 
 <style>
