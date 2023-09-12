@@ -39,11 +39,13 @@
 	{#each data.posts as post}
 		<Post
 			{supabase}
+			{session}
 			content={post.name}
 			user={post.profiles.username}
 			fullName={post.profiles.full_name}
 			bind:url={post.profiles.avatar_url}
 			date={post.created}
+			likes={post.likes}
 		/>
 	{/each}
 </ul>
