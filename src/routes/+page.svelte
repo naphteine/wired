@@ -40,6 +40,7 @@
 		<Post
 			{supabase}
 			{session}
+			postId={post.id}
 			content={post.name}
 			user={post.profiles.username}
 			fullName={post.profiles.full_name}

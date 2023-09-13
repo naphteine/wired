@@ -24,6 +24,60 @@ export const actions = {
 		return {
 			newPost
 		};
+	},
+
+	upvote: async ({ request, locals: { supabase, getSession }}) => {
+		const formData = await request.formData();
+		const postId = formData.get("postId");
+		const session = await getSession();
+
+		if (!session) {
+			throw error(401, { message: 'Unauthorized' });
+		}
+
+		if (!postId) {
+			throw error(404, { message: 'Post not found' });
+		}
+
+		const { error: createLikeError, data: newLike } = await supabase
+			.from('likes')
+			.insert({ user: session.user.id, post: postId, liked: true });
+
+		if (createLikeError) {
+			return fail(500, {
+				supabaseErrorMessage: createLikeError.message
+			});
+		}
+		return {
+			newLike
+		};
+	},
+
+	downvote: async ({ request, locals: { supabase, getSession }}) => {
+		const formData = await request.formData();
+		const postId = formData.get("postId");
+		const session = await getSession();
+
+		if (!session) {
+			throw error(401, { message: 'Unauthorized' });
+		}
+
+		if (!postId) {
+			throw error(404, { message: 'Post not found' });
+		}
+
+		const { error: createLikeError, data: newLike } = await supabase
+			.from('likes')
+			.insert({ user: session.user.id, post: postId, liked: false });
+
+		if (createLikeError) {
+			return fail(500, {
+				supabaseErrorMessage: createLikeError.message
+			});
+		}
+		return {
+			newLike
+		};
 	}
 };
 

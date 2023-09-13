@@ -5,6 +5,7 @@
 	import IconParkTwotoneUpC from 'virtual:icons/icon-park-twotone/up-c';
 	import IconParkTwotoneDownC from 'virtual:icons/icon-park-twotone/down-c';
 
+	export let postId = '';
 	export let content = '';
 	export let user = '';
 	export let date = '';
@@ -78,7 +79,8 @@
 	<p class="my-4">{content}</p>
 	<footer class="flex items-center">
 		{#if loggedInUserId}
-			<form action="?/like">
+			<form method="post" action="?/upvote">
+				<input type="hidden" name="postId" value={postId} />
 				<button class="flex">
 					<IconParkTwotoneUpC class={isUserActed && isUserLiked ? 'mx-1 text-green-600' : 'mx-1'} />
 					{#if likeCount > dislikeCount}
@@ -88,7 +90,8 @@
 					{/if}
 				</button>
 			</form>
-			<form action="?/dislike">
+			<form method="post" action="?/downvote">
+				<input type="hidden" name="postId" value={postId} />
 				<button class="flex">
 					<IconParkTwotoneDownC
 						class={isUserActed && !isUserLiked ? 'mx-1 text-red-600' : 'mx-1'}
