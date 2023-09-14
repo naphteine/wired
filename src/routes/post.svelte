@@ -4,6 +4,7 @@
 
 	import IconParkTwotoneUpC from 'virtual:icons/icon-park-twotone/up-c';
 	import IconParkTwotoneDownC from 'virtual:icons/icon-park-twotone/down-c';
+	import { error, fail } from '@sveltejs/kit';
 
 	export let postId = '';
 	export let content = '';
@@ -17,18 +18,22 @@
 	export let session: Session;
 
 	const loggedInUserId = session ? session.user.id : null;
-	const likeCount = likes.filter((like) => like.liked).length;
-	const dislikeCount = likes.filter((like) => !like.liked).length;
+	let likeCount = likes.filter((like: { liked: any }) => like.liked).length;
+	let dislikeCount = likes.filter((like: { liked: any }) => !like.liked).length;
 
 	let isUserLiked = false;
 	let isUserDisliked = false;
 
 	if (loggedInUserId) {
-		isUserLiked = likes.some((like) => like.user === loggedInUserId && like.liked);
-		isUserDisliked = likes.some((like) => like.user === loggedInUserId && !like.liked);
+		isUserLiked = likes.some(
+			(like: { user: string; liked: any }) => like.user === loggedInUserId && like.liked
+		);
+		isUserDisliked = likes.some(
+			(like: { user: string; liked: any }) => like.user === loggedInUserId && !like.liked
+		);
 	}
 
-	const isUserActed = isUserLiked || isUserDisliked;
+	let isUserActed = isUserLiked || isUserDisliked;
 
 	const objDate = new Date(date);
 	const formattedDate = objDate.toLocaleDateString('tr-TR', {
@@ -62,6 +67,101 @@
 	};
 
 	$: if (url) downloadImage(url);
+
+	const removeLikeDislike = async (user_id: string, post_id: number) => {
+		const { error: createRemoveError, data: removeLike } = await supabase
+			.from('likes')
+			.delete()
+			.eq('user', user_id)
+			.eq('post', post_id);
+
+		if (createRemoveError) {
+			return fail(500, {
+				supabaseErrorMessage: createRemoveError.message
+			});
+		}
+
+		if (isUserActed) {
+			if (isUserLiked) {
+				likeCount -= 1;
+			} else {
+				dislikeCount -= 1;
+			}
+		}
+
+		isUserActed = false;
+		isUserLiked = false;
+		isUserDisliked = false;
+
+		return {
+			createRemoveError
+		};
+	};
+
+	const likePost = async (user_id: string, post_id: number, isLike: boolean) => {
+		const { error: createLikeError, data: newLike } = await supabase
+			.from('likes')
+			.insert({ user: session.user.id, post: postId, liked: isLike });
+
+		if (createLikeError) {
+			return fail(500, {
+				supabaseErrorMessage: createLikeError.message
+			});
+		}
+
+		isUserActed = true;
+
+		if (isLike) {
+			likeCount += 1;
+		} else {
+			dislikeCount += 1;
+		}
+
+		isUserLiked = isLike;
+		isUserDisliked = !isLike;
+
+		return {
+			newLike
+		};
+	};
+
+	const upvote = async () => {
+		if (!session) {
+			alert('You are not logged in!');
+			return;
+		}
+
+		if (!postId) {
+			alert('Post not found!');
+			return;
+		}
+
+		if (isUserActed && isUserLiked) {
+			await removeLikeDislike(session.user.id, +postId);
+		} else {
+			await removeLikeDislike(session.user.id, +postId);
+			await likePost(session.user.id, +postId, true);
+		}
+	};
+
+	const dislike = async () => {
+		if (!session) {
+			alert('You are not logged in!');
+			return;
+		}
+
+		if (!postId) {
+			alert('Post not found!');
+			return;
+		}
+
+		if (isUserActed && isUserDisliked) {
+			await removeLikeDislike(session.user.id, +postId);
+		} else {
+			await removeLikeDislike(session.user.id, +postId);
+			await likePost(session.user.id, +postId, false);
+		}
+	};
 </script>
 
 <article class="bg-slate-300 rounded-xl p-5 mx-auto my-3">
@@ -79,30 +179,23 @@
 	<p class="my-4">{content}</p>
 	<footer class="flex items-center">
 		{#if loggedInUserId}
-			<form method="post" action="?/upvote">
-				<input type="hidden" name="postId" value={postId} />
-				<button class="flex">
-					<IconParkTwotoneUpC class={isUserActed && isUserLiked ? 'mx-1 text-green-600' : 'mx-1'} />
-					{#if likeCount > dislikeCount}
-						<b>{likeCount}</b>
-					{:else}
-						{likeCount}
-					{/if}
-				</button>
-			</form>
-			<form method="post" action="?/downvote">
-				<input type="hidden" name="postId" value={postId} />
-				<button class="flex">
-					<IconParkTwotoneDownC
-						class={isUserActed && !isUserLiked ? 'mx-1 text-red-600' : 'mx-1'}
-					/>
-					{#if likeCount < dislikeCount}
-						<b>{-dislikeCount}</b>
-					{:else}
-						{dislikeCount}
-					{/if}
-				</button>
-			</form>
+			<button on:click={upvote} class="flex items-center">
+				<IconParkTwotoneUpC class={isUserActed && isUserLiked ? 'mx-1 text-green-600' : 'mx-1'} />
+				{#if likeCount > dislikeCount}
+					<b>{likeCount}</b>
+				{:else}
+					{likeCount}
+				{/if}
+			</button>
+
+			<button on:click={dislike} class="flex items-center">
+				<IconParkTwotoneDownC class={isUserActed && !isUserLiked ? 'mx-1 text-red-600' : 'mx-1'} />
+				{#if likeCount < dislikeCount}
+					<b>{-dislikeCount}</b>
+				{:else}
+					{dislikeCount}
+				{/if}
+			</button>
 		{:else}
 			<IconParkTwotoneUpC class="mx-1 text-gray-600" />
 			{#if likeCount > dislikeCount}
