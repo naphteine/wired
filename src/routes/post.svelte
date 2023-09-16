@@ -164,7 +164,7 @@
 	};
 </script>
 
-<article class="bg-red-300 bg-opacity-80 rounded p-5 mx-auto my-3">
+<article class="bg-gray-100 bg-opacity-70 rounded p-5 mx-auto my-3">
 	<header class="flex items-center">
 		{#if avatarUrl}
 			<img src={avatarUrl} alt={avatarUrl ? 'Avatar' : 'No image'} class="h-20 w-20 rounded-full" />
