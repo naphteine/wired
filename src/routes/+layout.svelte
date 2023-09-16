@@ -30,9 +30,11 @@
 </script>
 
 <Header {session} />
+
 <main>
 	<slot />
 </main>
+
 <footer class="flex my-20 items-center justify-center">
 	<SvelteLogo />
 	<VercelLogo />

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	margin: 0;
 	height: 100vh;
 	background: rgb(238,174,202);

@@ -1,11 +1,10 @@
 <script lang="ts">
 	import type { Session } from '@supabase/supabase-js';
-
 	export let session: Session;
 </script>
 
 <header>
-	<h1>Welcome to the Wired</h1>
+	<img src="/logo.svg" alt="killme" />
 	<nav>
 		<a
 			class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
@@ -37,11 +36,12 @@
 		align-items: center;
 	}
 
-	h1 {
-		margin: 0;
-	}
-
 	nav {
 		margin: 1rem 0;
+	}
+
+	img {
+		pointer-events: none;
+		user-select: none;
 	}
 </style>
