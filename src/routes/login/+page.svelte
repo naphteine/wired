@@ -10,6 +10,10 @@
 	<input placeholder="password" type="password" name="password" />
 	<button>LOGIN</button>
 </form>
+
+<audio hidden autoplay>
+	<source src="/whoistheuser.mp3" type="audio/mpeg">
+</audio>
 {#if form?.message}
 	<h2>{form?.message}</h2>
 {/if}

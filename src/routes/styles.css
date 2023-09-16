@@ -4,5 +4,6 @@
 
 body {
 	margin: 0;
-	background-color: rgb(250, 255, 252);
+	background-color: rgb(61, 33, 6);
+	background-image: url('/bg.gif');
 }
