@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--dark: black;
+	--light: white;
+}
+
 body {
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	margin: 0;
 	height: 100vh;
+}
+
+.light {
 	background: rgb(238,174,202);
-	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)
+}
+
+.dark {
+	background: rgb(238,174,202);
+	background: radial-gradient(circle, #38212b 0%, rgb(47, 60, 75) 100%)
 }

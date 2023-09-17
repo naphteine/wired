@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Session } from '@supabase/supabase-js';
+
 	export let session: Session;
 </script>
 
