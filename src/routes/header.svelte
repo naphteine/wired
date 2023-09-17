@@ -5,12 +5,15 @@
 </script>
 
 <header>
-	<img src="/logo.svg" alt="killme" />
+	<img class="dark:hidden" src="/logo.svg" alt="killme" />
+	<img class="hidden dark:block" src="/lightlogo.svg" alt="killme" />
 	<nav>
 		<a
 			class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
-			href="/">Home</a
+			href="/"
 		>
+			Home
+		</a>
 		{#if session}
 			<a
 				class="bg-slate-600 p-2 text-slate-100 rounded hover:text-blue-100 hover:bg-blue-600 transition"
