@@ -66,7 +66,7 @@
 <footer class="flex my-20 items-center justify-center">
 	<SvelteLogo />
 	<VercelLogo />
-	Made with *love* <a class="hover:underline" href="https://gokaygultekin.dev">Gökay Gültekin</a>
+	Made with *love* <a class="hover:underline" href="https://gokay.works">Gökay Gültekin</a>
 </footer>
 
 <Loading />
