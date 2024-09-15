@@ -5,7 +5,7 @@ export const actions = {
 		const session = await getSession();
 
 		if (!session) {
-			throw error(401, { message: 'Unauthorized' });
+			error(401, { message: 'Unauthorized' });
 		}
 
 		const formData = await request.formData();
@@ -32,11 +32,11 @@ export const actions = {
 		const session = await getSession();
 
 		if (!session) {
-			throw error(401, { message: 'Unauthorized' });
+			error(401, { message: 'Unauthorized' });
 		}
 
 		if (!postId) {
-			throw error(404, { message: 'Post not found' });
+			error(404, { message: 'Post not found' });
 		}
 
 		const { error: createLikeError, data: newLike } = await supabase
@@ -59,11 +59,11 @@ export const actions = {
 		const session = await getSession();
 
 		if (!session) {
-			throw error(401, { message: 'Unauthorized' });
+			error(401, { message: 'Unauthorized' });
 		}
 
 		if (!postId) {
-			throw error(404, { message: 'Post not found' });
+			error(404, { message: 'Post not found' });
 		}
 
 		const { error: createLikeError, data: newLike } = await supabase
