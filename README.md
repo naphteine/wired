@@ -4,6 +4,7 @@
 
 * SvelteKit
 * Tailwind
+* Supabase
 
 ## Contributing
 
