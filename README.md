@@ -5,6 +5,7 @@
 * SvelteKit
 * Tailwind
 * Supabase
+* Vercel
 
 ## Contributing
 
